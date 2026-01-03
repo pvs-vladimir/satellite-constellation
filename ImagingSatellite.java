@@ -18,9 +18,13 @@ public class ImagingSatellite extends Satellite {
 
     @Override
     public void performMission() {
-        takePhoto();
         if (isActive) {
+            System.out.println(String.format("✅ %s: Съемка территории с разрешением %.1f м/пиксель",
+                                             name, resolution));
+            takePhoto();
             consumeBattery(0.08);
+        } else {
+            System.out.println(String.format("❌ %s: Не может выполнить съемку - не активен", name));
         }
     }
 
@@ -37,13 +41,7 @@ public class ImagingSatellite extends Satellite {
     private void takePhoto() {
         if (isActive) {
             photosTaken++;
-
-            System.out.println(String.format("✅ %s: Съемка территории с разрешением %.1f м/пиксель",
-                                             name, resolution));
             System.out.println(String.format("✅ %s: Снимок #%d сделан!", name, photosTaken));
-            return;
         }
-
-        System.out.println(String.format("❌ %s: Не может выполнить съемку - не активен", name));
     }
 }

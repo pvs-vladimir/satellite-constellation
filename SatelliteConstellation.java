@@ -8,7 +8,6 @@ public class SatelliteConstellation {
     public SatelliteConstellation(String constellationName) {
         this.constellationName = constellationName;
         this.satellites = new ArrayList<>();
-
         System.out.println(String.format("Создана спутниковая группировка: %s",
                                          this.constellationName));
     }
@@ -22,10 +21,11 @@ public class SatelliteConstellation {
     }
 
     public void addSatellite(Satellite satellite) {
-        satellites.add(satellite);
-
-        System.out.println(String.format("%s добавлен в группировку '%s'",
-                                         satellite.getName(), constellationName));
+        if (satellite != null && !satellites.contains(satellite)) {
+            satellites.add(satellite);
+            System.out.println(String.format("%s добавлен в группировку '%s'",
+                                            satellite.getName(), constellationName));
+        }
     }
 
     public void executeAllMissions() {
