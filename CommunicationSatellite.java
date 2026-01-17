@@ -1,5 +1,6 @@
 public class CommunicationSatellite extends Satellite {
     private final double bandwidth;
+    private final double sendBatteryConsumption = 0.05;
 
     public CommunicationSatellite(String name, double batteryLevel, double bandwidth) {
         super(name, batteryLevel);
@@ -12,11 +13,11 @@ public class CommunicationSatellite extends Satellite {
 
     @Override
     public void performMission() {
-        if (isActive) {
+        if (state.isActive()) {
             System.out.println(String.format("✅ %s: Передача данных со скоростью %.1f Мбит/с",
                                              name, bandwidth));
             sendData(bandwidth);
-            consumeBattery(0.05);
+            energy.consume(sendBatteryConsumption, state);
         } else {
             System.out.println(String.format("❌ %s: Не может выполнить передачу данных - не активен", name));
         }
@@ -27,12 +28,12 @@ public class CommunicationSatellite extends Satellite {
         return this.getClass().getSimpleName() + "{" +
                "bandwidth=" + bandwidth + ", " +
                "name='" + name + "', " +
-               "isActive=" + isActive + ", " +
-               "batteryLevel=" + batteryLevel + "}";
+               "isActive=" + state.isActive() + ", " +
+               "batteryLevel=" + energy.getBatteryLevel() + "}";
     }
 
     private void sendData(double dataAmount) {
-        if (isActive) {
+        if (state.isActive()) {
             System.out.println(String.format("✅ %s: Отправил %.1f Мбит данных!", name, dataAmount));
         }
     }

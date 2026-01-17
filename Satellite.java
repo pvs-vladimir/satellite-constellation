@@ -1,16 +1,15 @@
 public abstract class Satellite {
     protected String name;
-    protected boolean isActive;
-    protected double batteryLevel;
-    private final double minActivationBatteryLevel = 0.2;
+    protected SatelliteState state;
+    protected EnergySystem energy;
 
     public Satellite(String name, double batteryLevel) {
         this.name = name;
-        this.isActive = false;
-        this.batteryLevel = batteryLevel;
+        this.state = new SatelliteState();
+        this.energy = new EnergySystem(batteryLevel);
 
         System.out.println(String.format("Создан спутник: %s (заряд: %d%%)",
-                                         this.name, (int) (this.batteryLevel * 100)));
+                                         this.name, (int) (this.energy.getBatteryLevel() * 100)));
     }
 
     public String getName() {
@@ -18,37 +17,30 @@ public abstract class Satellite {
     }
 
     public boolean isActive() {
-        return isActive;
+        return state.isActive();
     }
 
     public double getBatteryLevel() {
-        return batteryLevel;
+        return energy.getBatteryLevel();
     }
 
     public boolean activate() {
-        if (!isActive && batteryLevel > minActivationBatteryLevel) {
-            isActive = true;
+        boolean res = state.activate(energy);
+        if (res) {
             System.out.println(String.format("✅ %s: Активация успешна", name));
         } else {
             System.out.println(String.format("❌ %s: Ошибка активации (заряд: %d%%)",
-                                             name, (int) (this.batteryLevel * 100)));
+                                             name, (int) (energy.getBatteryLevel() * 100)));
         }
-        return isActive;
+        return res;
     }
 
     public void deactivate() {
-        if (isActive) {
-            isActive = false;
-        }
+        state.deactivate();
     }
 
     public void consumeBattery(double batteryAmount) {
-        if (batteryAmount <= 0) return;
-
-        batteryLevel = Double.max((batteryLevel - batteryAmount), 0);
-        if (batteryLevel < minActivationBatteryLevel) {
-            deactivate();
-        }
+        energy.consume(batteryAmount, state);
     }
 
     protected abstract void performMission();
