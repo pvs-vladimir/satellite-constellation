@@ -17,7 +17,7 @@ public class CommunicationSatellite extends Satellite {
             System.out.println(String.format("✅ %s: Передача данных со скоростью %.1f Мбит/с",
                                              name, bandwidth));
             sendData(bandwidth);
-            energy.consume(sendBatteryConsumption, state);
+            useEnergy(sendBatteryConsumption);
         } else {
             System.out.println(String.format("❌ %s: Не может выполнить передачу данных - не активен", name));
         }
@@ -25,11 +25,11 @@ public class CommunicationSatellite extends Satellite {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "{" +
+        return "CommunicationSatellite{" +
                "bandwidth=" + bandwidth + ", " +
                "name='" + name + "', " +
-               "isActive=" + state.isActive() + ", " +
-               "batteryLevel=" + energy.getBatteryLevel() + "}";
+               "state=" + state + ", " +
+               "energy=" + energy + "}";
     }
 
     private void sendData(double dataAmount) {

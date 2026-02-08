@@ -16,16 +16,16 @@ public abstract class Satellite {
         return name;
     }
 
-    public boolean isActive() {
-        return state.isActive();
+    public SatelliteState getState() {
+        return state;
     }
 
-    public double getBatteryLevel() {
-        return energy.getBatteryLevel();
+    public EnergySystem getEnergy() {
+        return energy;
     }
 
     public boolean activate() {
-        boolean res = state.activate(energy);
+        boolean res = state.activate(energy.hasSufficientBatteryLevel());
         if (res) {
             System.out.println(String.format("✅ %s: Активация успешна", name));
         } else {
@@ -36,12 +36,18 @@ public abstract class Satellite {
     }
 
     public void deactivate() {
-        state.deactivate();
-    }
-
-    public void consumeBattery(double batteryAmount) {
-        energy.consume(batteryAmount, state);
+        if (state.isActive()) {
+            state.deactivate();
+            System.out.println(String.format("❌ %s: Деактивирован", name));
+        }
     }
 
     protected abstract void performMission();
+
+    protected void useEnergy(double batteryAmount) {
+        energy.consume(batteryAmount);
+        if (!energy.hasSufficientBatteryLevel()) {
+            deactivate();
+        }
+    }
 }

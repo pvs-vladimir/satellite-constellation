@@ -23,7 +23,7 @@ public class ImagingSatellite extends Satellite {
             System.out.println(String.format("✅ %s: Съемка территории с разрешением %.1f м/пиксель",
                                              name, resolution));
             takePhoto();
-            energy.consume(photoEnergyConsumption, state);
+            useEnergy(photoEnergyConsumption);
         } else {
             System.out.println(String.format("❌ %s: Не может выполнить съемку - не активен", name));
         }
@@ -31,12 +31,12 @@ public class ImagingSatellite extends Satellite {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "{" +
+        return "ImagingSatellite{" +
                "resolution=" + resolution + ", " +
                "photosTaken=" + photosTaken + ", " +
                "name='" + name + "', " +
-               "isActive=" + state.isActive() + ", " +
-               "batteryLevel=" + energy.getBatteryLevel() + "}";
+               "state=" + state + ", " +
+               "energy=" + energy + "}";
     }
 
     private void takePhoto() {
