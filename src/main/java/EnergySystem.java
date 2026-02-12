@@ -37,7 +37,7 @@ public class EnergySystem {
     @Override
     public String toString() {
         return "EnergySystem{" +
-               "batteryLevel=" + getBatteryLevel() + "}";
+               "batteryLevel=" + String.format("%.2f", getBatteryLevel()) + "}";
     }
 
 }

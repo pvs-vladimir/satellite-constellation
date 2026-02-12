@@ -1,9 +1,8 @@
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 public class Main {
-    private static final int CONSOLE_LINE_WIDTH = 50;
+    private static final int CONSOLE_LINE_WIDTH = 60;
 
     // Команда для powershell перед запуском приложения (для корректного отображения кириллицы и эмодзи):
     // [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -11,54 +10,67 @@ public class Main {
         try {
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
 
-            launchControlSystem();
+            launchControlSystem(args);
         } catch (IOException e) {
             e.printStackTrace(System.err);
         }     
     }
 
-    private static void launchControlSystem() {
+    private static void launchControlSystem(String[] args) {
         System.out.println("\nЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ");
         System.out.println(String.valueOf('=').repeat(CONSOLE_LINE_WIDTH));
+
+        ConstellationRepository constellationRepository = new ConstellationRepository();
+        SpaceOperationCenterService operationCenter = new SpaceOperationCenterService(constellationRepository);
 
         System.out.println("СОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        ArrayList<Satellite> satellites = new ArrayList<>();
-        satellites.add(new CommunicationSatellite("Связь-1", 0.85, 500));
-        satellites.add(new CommunicationSatellite("Связь-2", 0.75, 1000));
-        satellites.add(new ImagingSatellite("ДЗЗ-1", 0.92, 2.5));
-        satellites.add(new ImagingSatellite("ДЗЗ-2", 0.45, 1.0));
-        satellites.add(new ImagingSatellite("ДЗЗ-3", 0.15, 0.5));
+        CommunicationSatellite comSat1 = new CommunicationSatellite("Связь-1", 0.85, 500);
+        CommunicationSatellite comSat2 = new CommunicationSatellite("Связь-2", 0.75, 1000);
+        ImagingSatellite imgSat1 = new ImagingSatellite("ДЗЗ-1", 0.92, 2.5);
+        ImagingSatellite imgSat2 = new ImagingSatellite("ДЗЗ-2", 0.45, 1.0);
+        ImagingSatellite imgSat3 = new ImagingSatellite("ДЗЗ-3", 0.15, 0.5);
 
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        SatelliteConstellation constellation = new SatelliteConstellation("RU Basic");
+        operationCenter.createAndSaveConstellation("Орбита-1");
+        operationCenter.createAndSaveConstellation("Орбита-2");
 
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
         System.out.println("ФОРМИРОВАНИЕ ГРУППИРОВКИ:");
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        for (Satellite satellite : satellites) {
-            constellation.addSatellite(satellite);
-        }
+        operationCenter.addSatelliteToConstellation("Орбита-1", comSat1);
+        operationCenter.addSatelliteToConstellation("Орбита-1", imgSat1);
+        operationCenter.addSatelliteToConstellation("Орбита-1", imgSat2);
+        operationCenter.addSatelliteToConstellation("Орбита-2", comSat2);
+        operationCenter.addSatelliteToConstellation("Орбита-2", imgSat3);
 
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
-        System.out.println(constellation.toString());
-        System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
-        System.out.println("АКТИВАЦИЯ СПУТНИКОВ:");
-        System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        for (Satellite satellite : satellites) {
-            satellite.activate();
-        }
+        operationCenter.showConstellationStatus("Орбита-1");
+        operationCenter.showConstellationStatus("Орбита-2");
 
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
-        System.out.println(String.format("ВЫПОЛНЕНИЕ МИССИЙ ГРУППИРОВКИ %s",
-                                         constellation.getConstellationName()));
+
+        operationCenter.activateAllSatellites("Орбита-1");
+        operationCenter.activateAllSatellites("Орбита-2");
+
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        constellation.executeAllMissions();
+        operationCenter.executeConstellationMission("Орбита-1");
+        operationCenter.executeConstellationMission("Орбита-2");
+
+        System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
+
+        operationCenter.showConstellationStatus("Орбита-1");
+        operationCenter.showConstellationStatus("Орбита-2");
+
+        System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
+
+        operationCenter.deactivateAllSatellites("Орбита-1");
+        operationCenter.deactivateAllSatellites("Орбита-2");
 
         System.out.println(String.valueOf('=').repeat(CONSOLE_LINE_WIDTH));
     }
