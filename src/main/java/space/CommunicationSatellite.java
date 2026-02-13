@@ -1,3 +1,5 @@
+package space;
+
 public class CommunicationSatellite extends Satellite {
     private final double bandwidth;
     private final double sendBatteryConsumption = 0.05;

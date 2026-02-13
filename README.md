@@ -24,29 +24,24 @@
 Связь-2 добавлен в группировку 'Орбита-2'
 ДЗЗ-3 добавлен в группировку 'Орбита-2'
 ------------------------------------------------------------
-
 ===== СТАТУС ГРУППИРОВКИ: Орбита-1 =====
 Количество спутников: 3
 CommunicationSatellite{bandwidth=500.0, name='Связь-1', state=SatelliteState{isActive=false, statusMessage=Не активен}, energy=EnergySystem{batteryLevel=0.85}}
 ImagingSatellite{resolution=2.5, photosTaken=0, name='ДЗЗ-1', state=SatelliteState{isActive=false, statusMessage=Не активен}, energy=EnergySystem{batteryLevel=0.92}}
 ImagingSatellite{resolution=1.0, photosTaken=0, name='ДЗЗ-2', state=SatelliteState{isActive=false, statusMessage=Не активен}, energy=EnergySystem{batteryLevel=0.45}}
-
 ===== СТАТУС ГРУППИРОВКИ: Орбита-2 =====
 Количество спутников: 2
 CommunicationSatellite{bandwidth=1000.0, name='Связь-2', state=SatelliteState{isActive=false, statusMessage=Не активен}, energy=EnergySystem{batteryLevel=0.75}}
 ImagingSatellite{resolution=0.5, photosTaken=0, name='ДЗЗ-3', state=SatelliteState{isActive=false, statusMessage=Не активен}, energy=EnergySystem{batteryLevel=0.15}}
 ------------------------------------------------------------
-
 ===== АКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: Орбита-1 =====
 ✅ Связь-1: Активация успешна
 ✅ ДЗЗ-1: Активация успешна
 ✅ ДЗЗ-2: Активация успешна
-
 ===== АКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: Орбита-2 =====
 ✅ Связь-2: Активация успешна
 ❌ ДЗЗ-3: Ошибка активации (заряд: 15%)
 ------------------------------------------------------------
-
 ===== ВЫПОЛНЕНИЕ МИССИЙ ДЛЯ ГРУППИРОВКИ: Орбита-1 =====
 ✅ Связь-1: Передача данных со скоростью 500.0 Мбит/с
 ✅ Связь-1: Отправил 500.0 Мбит данных!
@@ -54,30 +49,25 @@ ImagingSatellite{resolution=0.5, photosTaken=0, name='ДЗЗ-3', state=Satellite
 ✅ ДЗЗ-1: Снимок #1 сделан!
 ✅ ДЗЗ-2: Съемка территории с разрешением 1.0 м/пиксель
 ✅ ДЗЗ-2: Снимок #1 сделан!
-
 ===== ВЫПОЛНЕНИЕ МИССИЙ ДЛЯ ГРУППИРОВКИ: Орбита-2 =====
 ✅ Связь-2: Передача данных со скоростью 1000.0 Мбит/с
 ✅ Связь-2: Отправил 1000.0 Мбит данных!
 ❌ ДЗЗ-3: Не может выполнить съемку - не активен
 ------------------------------------------------------------
-
 ===== СТАТУС ГРУППИРОВКИ: Орбита-1 =====
 Количество спутников: 3
 CommunicationSatellite{bandwidth=500.0, name='Связь-1', state=SatelliteState{isActive=true, statusMessage=Активен}, energy=EnergySystem{batteryLevel=0.80}}
 ImagingSatellite{resolution=2.5, photosTaken=1, name='ДЗЗ-1', state=SatelliteState{isActive=true, statusMessage=Активен}, energy=EnergySystem{batteryLevel=0.84}}
 ImagingSatellite{resolution=1.0, photosTaken=1, name='ДЗЗ-2', state=SatelliteState{isActive=true, statusMessage=Активен}, energy=EnergySystem{batteryLevel=0.37}}
-
 ===== СТАТУС ГРУППИРОВКИ: Орбита-2 =====
 Количество спутников: 2
 CommunicationSatellite{bandwidth=1000.0, name='Связь-2', state=SatelliteState{isActive=true, statusMessage=Активен}, energy=EnergySystem{batteryLevel=0.70}}
 ImagingSatellite{resolution=0.5, photosTaken=0, name='ДЗЗ-3', state=SatelliteState{isActive=false, statusMessage=Недостаточно энергии}, energy=EnergySystem{batteryLevel=0.15}}
 ------------------------------------------------------------
-
 ===== ДЕАКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: Орбита-1 =====
 ❌ Связь-1: Деактивирован
 ❌ ДЗЗ-1: Деактивирован
 ❌ ДЗЗ-2: Деактивирован
-
 ===== ДЕАКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: Орбита-2 =====
 ❌ Связь-2: Деактивирован
 ============================================================

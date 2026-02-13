@@ -1,3 +1,8 @@
+package space;
+
+import org.springframework.stereotype.Service;
+
+@Service
 public class SpaceOperationCenterService {
     private final ConstellationRepository repository;
 
@@ -20,7 +25,7 @@ public class SpaceOperationCenterService {
     public void activateAllSatellites(String constellationName) {
         if (repository.hasConstellation(constellationName)) {
             SatelliteConstellation constellation = repository.getConstellation(constellationName);
-            System.out.println(String.format("\n===== АКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: %s =====",
+            System.out.println(String.format("===== АКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: %s =====",
                                              constellation.getConstellationName()));
             for (Satellite satellite : constellation.getSatellites()) {
                 satellite.activate();
@@ -31,7 +36,7 @@ public class SpaceOperationCenterService {
     public void deactivateAllSatellites(String constellationName) {
         if (repository.hasConstellation(constellationName)) {
             SatelliteConstellation constellation = repository.getConstellation(constellationName);
-            System.out.println(String.format("\n===== ДЕАКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: %s =====",
+            System.out.println(String.format("===== ДЕАКТИВАЦИЯ СПУТНИКОВ В ГРУППИРОВКЕ: %s =====",
                                              constellation.getConstellationName()));
             for (Satellite satellite : constellation.getSatellites()) {
                 satellite.deactivate();
@@ -42,7 +47,7 @@ public class SpaceOperationCenterService {
     public void executeConstellationMission(String constellationName) {
         if (repository.hasConstellation(constellationName)) {
             SatelliteConstellation constellation = repository.getConstellation(constellationName);
-            System.out.println(String.format("\n===== ВЫПОЛНЕНИЕ МИССИЙ ДЛЯ ГРУППИРОВКИ: %s =====",
+            System.out.println(String.format("===== ВЫПОЛНЕНИЕ МИССИЙ ДЛЯ ГРУППИРОВКИ: %s =====",
                                              constellation.getConstellationName()));
             constellation.executeAllMissions();
         }
@@ -51,7 +56,7 @@ public class SpaceOperationCenterService {
     public void showConstellationStatus(String constellationName) {
         if (repository.hasConstellation(constellationName)) {
             SatelliteConstellation constellation = repository.getConstellation(constellationName);
-            System.out.println(String.format("\n===== СТАТУС ГРУППИРОВКИ: %s =====",
+            System.out.println(String.format("===== СТАТУС ГРУППИРОВКИ: %s =====",
                                              constellation.getConstellationName()));
             System.out.println("Количество спутников: " + constellation.getSatellites().size());
             for (Satellite satellite : constellation.getSatellites()) {

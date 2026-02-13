@@ -1,3 +1,5 @@
+package space;
+
 public abstract class Satellite {
     protected String name;
     protected SatelliteState state;

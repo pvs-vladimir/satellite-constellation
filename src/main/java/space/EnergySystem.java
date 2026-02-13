@@ -1,3 +1,5 @@
+package space;
+
 public class EnergySystem {
     private double batteryLevel;
 

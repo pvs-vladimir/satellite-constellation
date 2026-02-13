@@ -1,6 +1,12 @@
+package space;
+
 import java.io.IOException;
 import java.io.PrintStream;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
+@SpringBootApplication
 public class Main {
     private static final int CONSOLE_LINE_WIDTH = 60;
 
@@ -10,18 +16,20 @@ public class Main {
         try {
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
 
-            launchControlSystem(args);
+            ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
+            launchControlSystem(context);
+            context.close();
         } catch (IOException e) {
             e.printStackTrace(System.err);
         }     
     }
 
-    private static void launchControlSystem(String[] args) {
+    private static void launchControlSystem(ConfigurableApplicationContext context) {
         System.out.println("\nЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ");
         System.out.println(String.valueOf('=').repeat(CONSOLE_LINE_WIDTH));
 
-        ConstellationRepository constellationRepository = new ConstellationRepository();
-        SpaceOperationCenterService operationCenter = new SpaceOperationCenterService(constellationRepository);
+        ConstellationRepository constellationRepository = context.getBean(ConstellationRepository.class);
+        SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
 
         System.out.println("СОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
