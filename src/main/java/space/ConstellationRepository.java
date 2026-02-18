@@ -1,6 +1,5 @@
 package space;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;
@@ -13,8 +12,8 @@ public class ConstellationRepository {
         this.constellations = new HashMap<String, SatelliteConstellation>();
     }
 
-    public Collection<SatelliteConstellation> getAllConstellations() {
-        return constellations.values();
+    public Map<String, SatelliteConstellation> getAllConstellations() {
+        return constellations;
     }
 
     public void addConstellation(SatelliteConstellation constellation) {
