@@ -1,14 +1,17 @@
 package space.domain;
 
+import space.constants.ImagingSatelliteConstants;
+
 public class ImagingSatellite extends Satellite {
     private final double resolution;
     private int photosTaken;
-    private final double photoEnergyConsumption = 0.08;
+    private final double photoEnergyConsumption;
 
     public ImagingSatellite(String name, double batteryLevel, double resolution) {
         super(name, batteryLevel);
         this.resolution = resolution;
         this.photosTaken = 0;
+        this.photoEnergyConsumption = ImagingSatelliteConstants.PHOTO_ENERGY_CONSUMPTION;
     }
 
     public double getResolution() {

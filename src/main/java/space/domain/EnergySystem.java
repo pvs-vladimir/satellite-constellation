@@ -1,27 +1,30 @@
 package space.domain;
 
+import lombok.Builder;
+
+@Builder
 public class EnergySystem {
     private double batteryLevel;
 
-    private final double LOW_BATTERY_LEVEL = 0.2;
-    private final double MIN_BATTERY_LEVEL = 0.0;
-    private final double MAX_BATTERY_LEVEL = 1.0;
+    private final double lowBatteryLevel;
+    private final double minBatteryLevel;
+    private final double maxBatteryLevel;
 
-    public EnergySystem(double batteryLevel) {
-        this.batteryLevel = Double.max(Double.min(batteryLevel, MAX_BATTERY_LEVEL), MIN_BATTERY_LEVEL);
-    }
+    // public EnergySystem(double batteryLevel) {
+    //     this.batteryLevel = Double.max(Double.min(batteryLevel, MAX_BATTERY_LEVEL), MIN_BATTERY_LEVEL);
+    // }
 
     public double getBatteryLevel() {
         return batteryLevel;
     }
 
     public boolean hasSufficientBatteryLevel() {
-        return batteryLevel > LOW_BATTERY_LEVEL;
+        return batteryLevel > lowBatteryLevel;
     }
 
     public void charge(double batteryAmount) {
         if (batteryAmount > 0.0) {
-            batteryLevel = Double.min((batteryLevel + batteryAmount), MAX_BATTERY_LEVEL);
+            batteryLevel = Double.min((batteryLevel + batteryAmount), maxBatteryLevel);
         }
     }
 
@@ -31,7 +34,7 @@ public class EnergySystem {
             if (batteryLevel > batteryAmount) {
                 isEnough = true;
             }
-            batteryLevel = Double.max((batteryLevel - batteryAmount), MIN_BATTERY_LEVEL);
+            batteryLevel = Double.max((batteryLevel - batteryAmount), minBatteryLevel);
         }
         return isEnough;
     }

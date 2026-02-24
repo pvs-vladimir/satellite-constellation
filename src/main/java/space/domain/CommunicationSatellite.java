@@ -1,12 +1,15 @@
 package space.domain;
 
+import space.constants.CommunicationSatelliteConstants;
+
 public class CommunicationSatellite extends Satellite {
     private final double bandwidth;
-    private final double sendBatteryConsumption = 0.05;
+    private final double sendEnergyConsumption;
 
     public CommunicationSatellite(String name, double batteryLevel, double bandwidth) {
         super(name, batteryLevel);
         this.bandwidth = bandwidth;
+        this.sendEnergyConsumption = CommunicationSatelliteConstants.SEND_ENERGY_CONSUMPTION;
     }
 
     public double getBandwidth() {
@@ -19,7 +22,7 @@ public class CommunicationSatellite extends Satellite {
             System.out.println(String.format("✅ %s: Передача данных со скоростью %.1f Мбит/с",
                                              name, bandwidth));
             sendData(bandwidth);
-            useEnergy(sendBatteryConsumption);
+            useEnergy(sendEnergyConsumption);
         } else {
             System.out.println(String.format("❌ %s: Не может выполнить передачу данных - не активен", name));
         }

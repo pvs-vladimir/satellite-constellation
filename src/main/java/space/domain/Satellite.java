@@ -1,5 +1,7 @@
 package space.domain;
 
+import space.constants.EnergySystemConstants;
+
 public abstract class Satellite {
     protected String name;
     protected SatelliteState state;
@@ -8,7 +10,12 @@ public abstract class Satellite {
     public Satellite(String name, double batteryLevel) {
         this.name = name;
         this.state = new SatelliteState();
-        this.energy = new EnergySystem(batteryLevel);
+        this.energy = EnergySystem.builder()
+                        .batteryLevel(batteryLevel)
+                        .lowBatteryLevel(EnergySystemConstants.LOW_BATTERY_LEVEL)
+                        .minBatteryLevel(EnergySystemConstants.MIN_BATTERY_LEVEL)
+                        .maxBatteryLevel(EnergySystemConstants.MAX_BATTERY_LEVEL)
+                        .build();
 
         System.out.println(String.format("Создан спутник: %s (заряд: %d%%)",
                                          this.name, (int) (this.energy.getBatteryLevel() * 100)));
