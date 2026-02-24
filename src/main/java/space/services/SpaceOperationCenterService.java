@@ -1,6 +1,10 @@
-package space;
+package space.services;
 
 import org.springframework.stereotype.Service;
+
+import space.domain.Satellite;
+import space.domain.SatelliteConstellation;
+import space.repository.ConstellationRepository;
 
 @Service
 public class SpaceOperationCenterService {

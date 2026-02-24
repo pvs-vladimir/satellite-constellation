@@ -6,6 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import space.domain.CommunicationSatellite;
+import space.domain.ImagingSatellite;
+import space.repository.ConstellationRepository;
+import space.services.SpaceOperationCenterService;
+
 @SpringBootApplication
 public class Main {
     private static final int CONSOLE_LINE_WIDTH = 60;

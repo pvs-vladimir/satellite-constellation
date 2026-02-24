@@ -1,4 +1,4 @@
-package space;
+package space.domain;
 
 import java.util.ArrayList;
 import java.util.List;

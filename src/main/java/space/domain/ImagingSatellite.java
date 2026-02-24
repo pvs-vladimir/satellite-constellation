@@ -1,4 +1,4 @@
-package space;
+package space.domain;
 
 public class ImagingSatellite extends Satellite {
     private final double resolution;

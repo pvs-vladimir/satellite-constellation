@@ -1,4 +1,4 @@
-package space;
+package space.domain;
 
 public class EnergySystem {
     private double batteryLevel;

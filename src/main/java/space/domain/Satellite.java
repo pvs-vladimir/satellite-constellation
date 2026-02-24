@@ -1,4 +1,4 @@
-package space;
+package space.domain;
 
 public abstract class Satellite {
     protected String name;

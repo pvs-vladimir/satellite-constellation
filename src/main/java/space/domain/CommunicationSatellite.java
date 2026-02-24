@@ -1,4 +1,4 @@
-package space;
+package space.domain;
 
 public class CommunicationSatellite extends Satellite {
     private final double bandwidth;
