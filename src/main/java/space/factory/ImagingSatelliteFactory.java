@@ -2,19 +2,29 @@ package space.factory;
 
 import org.springframework.stereotype.Component;
 
-import space.constants.ImagingSatelliteConstants;
 import space.domain.ImagingSatellite;
+import space.domain.ImagingSatelliteParam;
 import space.domain.Satellite;
+import space.domain.SatelliteParam;
+import space.domain.SatelliteType;
 
 @Component
 public class ImagingSatelliteFactory implements SatelliteFactory {
     @Override
-    public Satellite createSatellite(String name, double batteryLevel) {
-        return new ImagingSatellite(name, batteryLevel, ImagingSatelliteConstants.DEFAULT_RESOLUTION);
+    public Satellite createSatelliteWithParameter(SatelliteParam param) {
+        if (SatelliteType.IMAGE.equals(param.getType())) {
+            ImagingSatelliteParam imagingParam = (ImagingSatelliteParam) param;
+            return new ImagingSatellite(
+                imagingParam.getName(),
+                imagingParam.getBatteryLevel(),
+                imagingParam.getResolution()
+            );
+        }
+        throw new RuntimeException("Данный тип параметров не поддерживается!");
     }
 
     @Override
-    public Satellite createSatelliteWithParameter(String name, double batteryLevel, double parameter) {
-        return new ImagingSatellite(name, batteryLevel, parameter);
+    public boolean isSatelliteTypeSupported(SatelliteType type) {
+        return SatelliteType.IMAGE.equals(type);
     }
 }

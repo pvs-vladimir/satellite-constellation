@@ -7,12 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import space.domain.CommunicationSatellite;
+import space.domain.CommunicationSatelliteParam;
 import space.domain.ImagingSatellite;
+import space.domain.ImagingSatelliteParam;
 import space.domain.Satellite;
 import space.factory.CommunicationSatelliteFactory;
 import space.factory.ImagingSatelliteFactory;
 import space.factory.SatelliteFactory;
 import space.repository.ConstellationRepository;
+import space.services.FactorySatelliteService;
+import space.services.SatelliteService;
 import space.services.SpaceOperationCenterService;
 
 @SpringBootApplication
@@ -41,15 +45,26 @@ public class Main {
         SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
         SatelliteFactory comFactory = context.getBean(CommunicationSatelliteFactory.class);
         SatelliteFactory imgFactory = context.getBean(ImagingSatelliteFactory.class);
+        SatelliteService satelliteService = context.getBean(FactorySatelliteService.class);
 
         System.out.println("СОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 
-        Satellite comSat1 = comFactory.createSatelliteWithParameter("Связь-1", 0.85, 500);
-        Satellite comSat2 = comFactory.createSatelliteWithParameter("Связь-2", 0.75, 1000);
-        Satellite imgSat1 = imgFactory.createSatelliteWithParameter("ДЗЗ-1", 0.92, 2.5);
-        Satellite imgSat2 = imgFactory.createSatelliteWithParameter("ДЗЗ-2", 0.45, 1.0);
-        Satellite imgSat3 = imgFactory.createSatelliteWithParameter("ДЗЗ-3", 0.15, 0.5);
+        Satellite comSat1 = satelliteService.createSatellite(
+            new CommunicationSatelliteParam("Связь-1", 0.85, 500)
+        );
+        Satellite comSat2 = satelliteService.createSatellite(
+            new CommunicationSatelliteParam("Связь-2", 0.75, 1000)
+        );
+        Satellite imgSat1 = satelliteService.createSatellite(
+            new ImagingSatelliteParam("ДЗЗ-1", 0.92, 2.5)
+        );
+        Satellite imgSat2 = satelliteService.createSatellite(
+            new ImagingSatelliteParam("ДЗЗ-2", 0.45, 1.0)
+        );
+        Satellite imgSat3 = satelliteService.createSatellite(
+            new ImagingSatelliteParam("ДЗЗ-3", 0.15, 0.5)
+        );
 
         System.out.println(String.valueOf('-').repeat(CONSOLE_LINE_WIDTH));
 

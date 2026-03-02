@@ -1,8 +1,10 @@
 package space.factory;
 
 import space.domain.Satellite;
+import space.domain.SatelliteParam;
+import space.domain.SatelliteType;
 
 public interface SatelliteFactory {
-    Satellite createSatellite(String name, double batteryLevel);
-    Satellite createSatelliteWithParameter(String name, double batteryLevel, double parameter);
+    Satellite createSatelliteWithParameter(SatelliteParam param);
+    boolean isSatelliteTypeSupported(SatelliteType type);
 }
