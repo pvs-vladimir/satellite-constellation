@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import space.domain.Satellite;
-import space.domain.SatelliteParam;
+import space.domain.satellites.Satellite;
+import space.domain.satellites.SatelliteParam;
 import space.factory.SatelliteFactory;
 
 @RequiredArgsConstructor

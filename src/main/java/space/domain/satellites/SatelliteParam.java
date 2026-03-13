@@ -1,4 +1,4 @@
-package space.domain;
+package space.domain.satellites;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

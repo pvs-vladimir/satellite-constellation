@@ -1,4 +1,4 @@
-package space.domain;
+package space.domain.satellites;
 
 public class SatelliteState {
     private boolean isActive = false;

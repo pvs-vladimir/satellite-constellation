@@ -8,11 +8,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import space.domain.CommunicationSatellite;
-import space.domain.CommunicationSatelliteParam;
-import space.domain.ImagingSatellite;
-import space.domain.ImagingSatelliteParam;
-import space.domain.Satellite;
+import space.domain.satellites.CommunicationSatellite;
+import space.domain.satellites.CommunicationSatelliteParam;
+import space.domain.satellites.ImagingSatellite;
+import space.domain.satellites.ImagingSatelliteParam;
+import space.domain.satellites.Satellite;
 
 @DisplayName("Тесты для SatelliteFactory")
 class SatelliteFactoryTest {

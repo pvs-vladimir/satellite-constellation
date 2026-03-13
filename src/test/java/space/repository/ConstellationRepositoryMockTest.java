@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import space.domain.SatelliteConstellation;
+import space.domain.satellites.SatelliteConstellation;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Mock-тест для ConstellationRepository")

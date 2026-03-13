@@ -1,8 +1,9 @@
-package space.domain;
+package space.domain.satellites;
 
 import space.constants.EnergySystemConstants;
 
 public abstract class Satellite {
+    protected SatelliteType type;
     protected String name;
     protected SatelliteState state;
     protected EnergySystem energy;
@@ -19,6 +20,10 @@ public abstract class Satellite {
 
         System.out.println(String.format("Создан спутник: %s (заряд: %d%%)",
                                          this.name, (int) (this.energy.getBatteryLevel() * 100)));
+    }
+
+    public SatelliteType getType() {
+        return type;
     }
 
     public String getName() {
@@ -51,7 +56,7 @@ public abstract class Satellite {
         }
     }
 
-    protected abstract void performMission();
+    public abstract void performMission();
 
     protected void useEnergy(double batteryAmount) {
         energy.consume(batteryAmount);

@@ -1,4 +1,4 @@
-package space.domain;
+package space.domain.satellites;
 
 import java.util.ArrayList;
 import java.util.List;

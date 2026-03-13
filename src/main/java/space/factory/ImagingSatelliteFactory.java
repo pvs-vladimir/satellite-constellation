@@ -2,11 +2,11 @@ package space.factory;
 
 import org.springframework.stereotype.Component;
 
-import space.domain.ImagingSatellite;
-import space.domain.ImagingSatelliteParam;
-import space.domain.Satellite;
-import space.domain.SatelliteParam;
-import space.domain.SatelliteType;
+import space.domain.satellites.ImagingSatellite;
+import space.domain.satellites.ImagingSatelliteParam;
+import space.domain.satellites.Satellite;
+import space.domain.satellites.SatelliteParam;
+import space.domain.satellites.SatelliteType;
 
 @Component
 public class ImagingSatelliteFactory implements SatelliteFactory {

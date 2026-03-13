@@ -1,4 +1,4 @@
-package space.domain;
+package space.domain.satellites;
 
 import space.constants.CommunicationSatelliteConstants;
 
@@ -8,6 +8,7 @@ public class CommunicationSatellite extends Satellite {
 
     public CommunicationSatellite(String name, double batteryLevel, double bandwidth) {
         super(name, batteryLevel);
+        this.type = SatelliteType.COMMUNICATION;
         this.bandwidth = bandwidth;
         this.sendEnergyConsumption = CommunicationSatelliteConstants.SEND_ENERGY_CONSUMPTION;
     }

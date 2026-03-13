@@ -1,4 +1,4 @@
-package space.domain;
+package space.domain.satellites;
 
 import space.constants.ImagingSatelliteConstants;
 
@@ -9,6 +9,7 @@ public class ImagingSatellite extends Satellite {
 
     public ImagingSatellite(String name, double batteryLevel, double resolution) {
         super(name, batteryLevel);
+        this.type = SatelliteType.IMAGE;
         this.resolution = resolution;
         this.photosTaken = 0;
         this.photoEnergyConsumption = ImagingSatelliteConstants.PHOTO_ENERGY_CONSUMPTION;

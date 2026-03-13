@@ -1,8 +1,8 @@
 package space.factory;
 
-import space.domain.Satellite;
-import space.domain.SatelliteParam;
-import space.domain.SatelliteType;
+import space.domain.satellites.Satellite;
+import space.domain.satellites.SatelliteParam;
+import space.domain.satellites.SatelliteType;
 
 public interface SatelliteFactory {
     Satellite createSatelliteWithParameter(SatelliteParam param);

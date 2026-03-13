@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import space.domain.SatelliteConstellation;
+import space.domain.satellites.SatelliteConstellation;
 
 @DisplayName("Unit-тест для ConstellationRepository")
 class ConstellationRepositoryUnitTest {

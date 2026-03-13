@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 
-import space.domain.SatelliteConstellation;
+import space.domain.satellites.SatelliteConstellation;
 
 @Service
 public class ConstellationRepository {

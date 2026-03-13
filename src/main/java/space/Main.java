@@ -6,18 +6,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import space.domain.CommunicationSatellite;
-import space.domain.CommunicationSatelliteParam;
-import space.domain.ImagingSatellite;
-import space.domain.ImagingSatelliteParam;
-import space.domain.Satellite;
+import space.domain.satellites.CommunicationSatellite;
+import space.domain.satellites.CommunicationSatelliteParam;
+import space.domain.satellites.ImagingSatellite;
+import space.domain.satellites.ImagingSatelliteParam;
+import space.domain.satellites.Satellite;
 import space.factory.CommunicationSatelliteFactory;
 import space.factory.ImagingSatelliteFactory;
 import space.factory.SatelliteFactory;
 import space.repository.ConstellationRepository;
 import space.services.FactorySatelliteService;
 import space.services.SatelliteService;
-import space.services.SpaceOperationCenterService;
+import space.services.ConstellationService;
 
 @SpringBootApplication
 public class Main {
@@ -42,7 +42,7 @@ public class Main {
         System.out.println(String.valueOf('=').repeat(CONSOLE_LINE_WIDTH));
 
         ConstellationRepository constellationRepository = context.getBean(ConstellationRepository.class);
-        SpaceOperationCenterService operationCenter = context.getBean(SpaceOperationCenterService.class);
+        ConstellationService operationCenter = context.getBean(ConstellationService.class);
         SatelliteFactory comFactory = context.getBean(CommunicationSatelliteFactory.class);
         SatelliteFactory imgFactory = context.getBean(ImagingSatelliteFactory.class);
         SatelliteService satelliteService = context.getBean(FactorySatelliteService.class);
